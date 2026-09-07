@@ -79,9 +79,10 @@ class ShortMem():
     for more information checkout **A-memory** docs.
     '''
 
-    def __init__(self):
+    def __init__(self, m_delete:int | 3):
         self.messages = []
         self.message_number = 0
+        self.rm_messages_num = m_delete
     # Storing messages with 8 limit and forget first and old message after add new message
     def store_messages(self, role:str | None, message:str | None) -> str:
         # Add new messages
@@ -90,10 +91,11 @@ class ShortMem():
             self.message_number+=1
         # Remove old message after 8 message
         else:
-            self.messages.pop(0)
+            for r in range(self.rm_messages_num):
+                self.messages.pop(0)
+
             self.message_number = 0
             self.messages.append({"role": role, "content": message})
     # Return all stored Messages
     def remind_messages(self):
-        for items in self.messages:
-            return items
+        return self.messages
