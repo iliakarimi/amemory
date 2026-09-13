@@ -101,7 +101,3 @@ class ShortMem():
     # Return all stored Messages
     def remind_messages(self):
         return self.messages
-
-    def clear_memory(self):
-        # self.messages.
-        pass
