@@ -21,8 +21,8 @@ class GoalsMem():
         self.fn = 0
 
     # This method set and store goals in list 
-    def set_goals(self, contextgoals:str | None, recentgoal:str | None, 
-            activegoal:str | None, chatfacts:str | None) -> str:
+    def set_goals(self, contextgoals=None, recentgoal=None, 
+            activegoal=None, chatfacts=None) -> str:
 
         if activegoal:
             self.active_goal = activegoal
@@ -78,7 +78,7 @@ class ShortMem():
     for more information checkout **A-memory** docs.
     '''
 
-    def __init__(self, m_delete:int | 3, always_keep:int | 0):
+    def __init__(self, m_delete: int=3, always_keep: int=0):
         self.messages = []
         self.message_number = 0
         self.rm_messages_num = m_delete
