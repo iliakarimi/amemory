@@ -9,7 +9,6 @@ class GoalsMem():
     * resault:\n
         This methed can return Stored data
     
-        
     for more information checkout **A-memory** docs.
     '''
 
