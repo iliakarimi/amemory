@@ -67,6 +67,9 @@ class ShortMem():
     This class is A **Short-term-Memory** for agents Store **Agent** and **user** chat.
 
     ### methods:
+    * add_rag_base:
+        Add **system text** with this method.
+
     * store_messages:\n
         this method store agent and user messages and remove 
         first old messages after 8 message betwinn user and agent.
@@ -74,15 +77,26 @@ class ShortMem():
     * remind_messages:\n
         This method just return stored messages.
     
+    * clear_messages:
+        This method clear entire messages excpet the system_text.
 
     for more information checkout **A-memory** docs.
     '''
 
     def __init__(self, m_delete: int=3, always_keep: int=0):
         self.messages = []
+        self.rag_text = []
+        self.systemtxt = None
         self.message_number = 0
         self.rm_messages_num = m_delete
         self.keep_always = always_keep
+
+
+    def add_rag_base(self, text:str = None):
+        self.rag_text.append(text)
+        self.messages.append(self.rag_text[0])
+
+
     # Storing messages with 8 limit and forget first and old message after add new message
     def store_messages(self, role:str | None, message:str | None) -> str:
         # Add new messages
@@ -100,3 +114,10 @@ class ShortMem():
     # Return all stored Messages
     def remind_messages(self):
         return self.messages
+
+    # Clear entir memory
+    def clear_messages(self):
+            self.messages.clear()
+
+            if self.messages == []:
+                self.messages.append(self.rag_text[0])
