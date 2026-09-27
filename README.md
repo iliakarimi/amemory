@@ -5,7 +5,7 @@ This is A memory for AI Agent/Assistant
 > **Note:** This project is currently under active development and is not finalized. You should expect bugs, unstable behavior, and breaking changes. Use with caution in any critical environments.
 
 
-## Key Features in A-Memory v0.1
+## Key Features in A-Memory
 
 * **Short Term Memory:** A Simple Short-Term-Memory for active chat with 8 message limit,
 * **Job map:** A map for Agent to plan it's job,
