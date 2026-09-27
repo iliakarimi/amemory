@@ -94,7 +94,7 @@ class ShortMem():
 
     def add_rag_base(self, text:str = None):
         self.rag_text.append(text)
-        self.messages.append(self.rag_text[0])
+        self.messages.append({"role": "developer", "content": self.rag_text[0]})
 
 
     # Storing messages with 8 limit and forget first and old message after add new message
@@ -120,4 +120,4 @@ class ShortMem():
             self.messages.clear()
 
             if self.messages == []:
-                self.messages.append(self.rag_text[0])
+                self.messages.append({"role": "developer", "content": self.rag_text[0]})
