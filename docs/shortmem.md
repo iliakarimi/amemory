@@ -57,4 +57,42 @@ while True:
     print(f"Assistant: {response.output_text}")
 ```
 
+
+## add_rag_base(self, text:str = None):
+
+For add **system-text** or **RAG-text** to model you can use **`add_rag_base()`** method.\
+Here's an example:\
+``` python
+from amemory.shortmemory import ShortMem
+
+
+sm = ShortMem(m_delete=2, always_keep=1)
+client = OpenAI(api_key="...")
+
+
+system_text = "You are Terry, A helpful assistant."
+
+# add system_text to memory with add_rag_base
+sm.add_rag_base(text=system_text)
+
+while True:
+    user_input = str(input("User: "))
+    sm.store_messages(role="user", messages=user_input)
+
+    response = client.responses.create(
+        model="gpt-6-sol",
+        input=sm.remind_messages()
+    )
+
+    sm.store_messages(role="assistant", message=response.output_text)
+    print(f"Assistant: {response.output_text}")
+    
+```
+
+```terminal
+User: What's your name?
+
+Assistant: I'm Terry, Your Helpful assistant.
+```
+
 That's it.
