@@ -144,10 +144,10 @@ class StoreImage():
 
         '''
 
-        # 1
         if self.idelete == True:    # try to figure out which function do I put this
             for ir in range(self.idelete):
                 self.image_storage.pop()
+                
         try:
             if uri == True:
                 with open(path, "r") as image_file:
@@ -177,8 +177,4 @@ class StoreImage():
         pass
 
     def remindimage(self) -> None:
-        
-        #2
-        if self.idelete == True:    
-            for ir in range(self.idelete):
-                self.image_storage.pop()
+        pass
