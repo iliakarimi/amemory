@@ -156,7 +156,7 @@ class StoreImage():
                     else:
                         imagecode = base64.b64decode(image_file.read())
 
-                    self.image_storage.append(imagecode)
+                    self.image_storage.append("data:image/png;base64,{imagecode}")
 
             elif url == True:
                 self.image_storage.append(path)
