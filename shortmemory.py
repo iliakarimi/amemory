@@ -1,12 +1,14 @@
+import base64
+
 class GoalsMem():
     '''
     ## Goals Memory
     This Class store Chat goals and and facts
     #### Methods:
-    * set_goals:\n
+    * set_goals:</br>
         This method can just Store goals and facts in chat
     
-    * resault:\n
+    * resault:</br>
         This methed can return Stored data
     
     for more information checkout **A-memory** docs.
@@ -70,26 +72,26 @@ class ShortMem():
     * add_rag_base:
         Add **system text** with this method.
 
-    * store_messages:\n
+    * store_messages:</br>
         this method store agent and user messages and remove 
         first old messages after 8 message betwinn user and agent.
     
-    * remind_messages:\n
+    * remind_messages:</br>
         This method just return stored messages.
     
-    * clear_messages:
+    * clear_messages:</br>
         This method clear entire messages excpet the system_text.
 
     for more information checkout **A-memory** docs.
     '''
 
-    def __init__(self, m_delete: int=3, always_keep: int=0):
+    def __init__(self, m_delete: int=3, alwayskeep: int=0):
         self.messages = []
         self.rag_text = []
         self.systemtxt = None
         self.message_number = 0
         self.rm_messages_num = m_delete
-        self.keep_always = always_keep
+        self.alwayskeep = alwayskeep
 
 
     def add_rag_base(self, text:str = None):
@@ -106,7 +108,7 @@ class ShortMem():
         # Remove old message after 8 message
         else:
             for r in range(self.rm_messages_num):
-                self.messages.pop(self.keep_always)
+                self.messages.pop(self.alwayskeep)
 
             self.message_number = 0
             self.messages.append({"role": role, "content": message})
@@ -121,3 +123,60 @@ class ShortMem():
 
             if self.messages == []:
                 self.messages.append({"role": "developer", "content": self.rag_text[0]})
+
+class StoreImage():
+    def __init__(self, idelete:int=2):
+        self.idelete = idelete
+        self.image_storage = []
+
+    def storeimage(self, input:str=None, uri:bool=True, direct:bool=False,
+                   url:bool=False, decode_method:str="utf-8", ):
+        '''
+        ## Store Image
+        **storeimage** use for store and remember Images.
+
+        usage:
+        * **input**:</br>
+            This parameter's get image path or URL
+        \n
+        * **direct**(bool):</br>
+        This parameter's 
+
+        '''
+
+        # 1
+        if self.idelete == True:    # try to figure out which function do I put this
+            for ir in range(self.idelete):
+                self.image_storage.pop()
+        try:
+            if uri == True:
+                with open(input, "r") as image_file:
+                    if decode_method:
+                        self.currebase64.b64decode(image_file.read()).decode(decode_method)
+                    else:
+                        base64.b64decode(image_file.read())
+
+            elif url == True:
+                pass
+
+            elif direct == True:
+                self.image_storage.append(f"file://{input}")
+
+            else:
+                return None
+        
+        except None:
+            raise ValueError("Use **direct**, **uri** or **url** to specify the Image store method.").with_traceback
+        
+
+
+    # def attachimage(self, attach:str=None, 
+    #                 uri:bool=False, url:bool=False):
+    #     pass
+
+    # def remindimage(self) -> None:
+        
+    #     #2
+    #     if self.idelete == True:    
+    #         for ir in range(self.idelete):
+    #             self.image_storage.pop()
