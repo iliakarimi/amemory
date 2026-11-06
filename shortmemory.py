@@ -136,12 +136,23 @@ class StoreImage():
         **storeimage** use for store and remember Images.
 
         usage:
-        * **path**:</br>
+        * **path**(str):</br>
             This parameter's get image path or URL
         \n
+        #### store method:
+        * **uri**(bool):</br>
+        If you want store base64 Encoded Image, make this parameter 'True'
+        \n
         * **direct**(bool):</br>
-        This parameter's 
-
+        If you want store Image directly with path, make this parameter 'True'
+        \n
+        * **url**(bool):</br>
+        If you want store Image with **URL**, make this parameter 'True'
+        \n
+        * **decode_method**(str):
+        If you want store Images with decode, you can add values like 'utf-8' to this parameter
+        \n
+        for more information checkout **A-memory** docs.
         '''
 
         if self.idelete == True:    # try to figure out which function do I put this
