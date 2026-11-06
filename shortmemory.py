@@ -129,14 +129,14 @@ class StoreImage():
         self.idelete = idelete
         self.image_storage = []
 
-    def storeimage(self, input:str=None, uri:bool=True, direct:bool=False,
+    def storeimage(self, path:str=None, uri:bool=True, direct:bool=False,
                    url:bool=False, decode_method:str="utf-8", ):
         '''
         ## Store Image
         **storeimage** use for store and remember Images.
 
         usage:
-        * **input**:</br>
+        * **path**:</br>
             This parameter's get image path or URL
         \n
         * **direct**(bool):</br>
@@ -150,17 +150,19 @@ class StoreImage():
                 self.image_storage.pop()
         try:
             if uri == True:
-                with open(input, "r") as image_file:
+                with open(path, "r") as image_file:
                     if decode_method:
-                        self.currebase64.b64decode(image_file.read()).decode(decode_method)
+                        imagecode = base64.b64decode(image_file.read()).decode(decode_method)
                     else:
-                        base64.b64decode(image_file.read())
+                        imagecode = base64.b64decode(image_file.read())
+
+                    self.image_storage.append(imagecode)
 
             elif url == True:
-                pass
+                self.image_storage.append(path)
 
             elif direct == True:
-                self.image_storage.append(f"file://{input}")
+                self.image_storage.append(f"file://{path}")
 
             else:
                 return None
