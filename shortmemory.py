@@ -147,7 +147,7 @@ class StoreImage():
         if self.idelete == True:    # try to figure out which function do I put this
             for ir in range(self.idelete):
                 self.image_storage.pop()
-                
+
         try:
             if uri == True:
                 with open(path, "r") as image_file:
@@ -168,7 +168,7 @@ class StoreImage():
                 return None
         
         except None:
-            raise ValueError("Use **direct**, **uri** or **url** to specify the Image store method.").with_traceback
+            raise ValueError("Use **direct**, **uri** or **url** to specify the Image store method.")
         
 
 
