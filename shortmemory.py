@@ -170,13 +170,13 @@ class StoreImage():
         
 
 
-    # def attachimage(self, attach:str=None, 
-    #                 uri:bool=False, url:bool=False):
-    #     pass
+    def attachimage(self, attach:str=None, 
+                    uri:bool=False, url:bool=False):
+        pass
 
-    # def remindimage(self) -> None:
+    def remindimage(self) -> None:
         
-    #     #2
-    #     if self.idelete == True:    
-    #         for ir in range(self.idelete):
-    #             self.image_storage.pop()
+        #2
+        if self.idelete == True:    
+            for ir in range(self.idelete):
+                self.image_storage.pop()
