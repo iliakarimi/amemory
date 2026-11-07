@@ -203,60 +203,6 @@ class StoreImage():
             if ValueError:
                 raise ValueError("Use 'direct', 'uri' or 'url' to specify the Image store method.")
 
-    # def attachimage(self, attach:str=None, direct:bool=False, uri:bool=False, 
-    #                 url:bool=False, decode_method:str="utf-8", clear_attach=None):
-    #     '''
-    #     ## attachimage
-    #     **attachimage** use for attach Images and use for like showing images to models.
-
-    #     usage:
-    #     * **attach**(str):</br>
-    #         This parameter's get and attach image or image URL.
-    #     \n
-    #     #### store method:
-    #     * **uri**(bool):</br>
-    #     If you want store base64 Encoded Image, make this parameter 'True'.
-    #     \n
-    #     * **direct**(bool):</br>
-    #     If you want store Image directly with path, make this parameter 'True'.
-    #     \n
-    #     * **url**(bool):</br>
-    #     If you want store Image with **URL**, make this parameter 'True'.
-    #     \n
-    #     * **decode_method**(str):
-    #     If you want store Images with decode, you can add values like 'utf-8' to this parameter.
-    #     \n
-    #     for more information checkout **A-memory** docs.
-    #     '''
-
-    #     try:
-    #         if uri == True and uri != False:
-    #             with open(attach, "rb") as image_file:
-    #                 if decode_method:
-    #                     attached_image = base64.b64encode(image_file.read()).decode(decode_method)
-
-    #                 else:
-    #                     attached_image = base64.b64encode(image_file.read())
-
-    #             self.attached.append(attached_image)
-
-    #         if url == True and url != False:
-    #             self.attached.append(attached_image)
-
-    #         if direct == True and direct != False:
-    #             self.attached.append(f"file://{attach}")
-
-    #         if clear_attach == True:
-    #             self.attached.clear()
-    #             self.attached.
-    #         if direct == False and uri == False or url == False:
-    #             raise ValueError
-
-
-        # except:
-        #     if ValueError:
-        #         raise ValueError("Use 'direct', 'uri' or 'url' to specify the Image store method.")
-        
     def remindimage(self) -> bool:
         '''
         ## remindimage
@@ -271,23 +217,6 @@ class StoreImage():
         \n
         for more information checkout **A-memory** docs.
         '''
-        # try:
-            # if memory == True:
+
         return self.image_storage
 
-            # if attached == True:
-            #     return self.attach
-
-            # if memory == False and attached == False:
-            #     raise ValueError
-
-            # if type(memory) == str or type(memory) == int:
-            #     raise TypeError
-
-        # except Exception as e:
-        #     print(e)
-            # if ValueError:
-            #     raise ValueError("You Should Make At least 1 parameter's 'True'.")
-
-            # if TypeError:
-            #     raise TypeError("Use boolian(True/False) for Argoment.")
