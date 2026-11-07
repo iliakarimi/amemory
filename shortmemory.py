@@ -144,10 +144,11 @@ class StoreImage():
     for more information checkout **A-memory** docs.
     '''
 
-    def __init__(self, idelete:int=2):
+    def __init__(self, image_delete:int=2):
         self.attached = []
         self.image_storage = []
-        self.idelete = idelete
+        self.image_number = 0
+        self.image_delete = image_delete
 
     def storeimage(self, path:str=None, uri:bool=False, direct:bool=False,
                    url:bool=False, decode_method:str="utf-8"):
@@ -175,29 +176,31 @@ class StoreImage():
         for more information checkout **A-memory** docs.
         '''
 
-        if self.idelete == True:    # try to figure out which function do I put this
-            for ir in range(self.idelete):
-                self.image_storage.pop()
-
         try:
-            if uri == True and uri != False:
-                with open(path, "rb") as image_file:
-                    if decode_method:
-                        imagecode = base64.b64encode(image_file.read()).decode(decode_method)
-                    
-                    elif decode_method == None:
-                        imagecode = base64.b64encode(image_file.read())
+            if self.image_number <= 10:    # try to figure out which function do I put this
+                
+                if uri == True and uri != False:
+                    with open(path, "rb") as image_file:
+                        if decode_method:
+                            imagecode = base64.b64encode(image_file.read()).decode(decode_method)
+                        
+                        elif decode_method == None:
+                            imagecode = base64.b64encode(image_file.read())
 
-                    self.image_storage.append(f"data:image/png;base64,{imagecode}")
+                        self.image_storage.append(f"data:image/png;base64,{imagecode}")
 
-            elif url == True and url != False:
-                self.image_storage.append(path)
+                elif url == True and url != False:
+                    self.image_storage.append(path)
 
-            elif direct == True and direct != False:
-                self.image_storage.append(f"file://{path}")
+                elif direct == True and direct != False:
+                    self.image_storage.append(f"file://{path}")
 
-            elif direct == False and uri == False or url == False:
-                raise ValueError
+                elif direct == False and uri == False or url == False:
+                    raise ValueError
+
+            else:
+                for ir in range(self.image_delete):
+                    self.image_storage.pop()
         
         except:
             if ValueError:
