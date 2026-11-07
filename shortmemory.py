@@ -63,10 +63,10 @@ class GoalsMem():
             return resu
 
 
-class ShortMem():
+class StoreMessage():
     '''
-    ## Short Memory
-    This class is A **Short-term-Memory** for agents Store **Agent** and **user** chat.
+    ## Store Message
+    This class is A **Short-term-Messages-Memory** for agents Store **Agent** and **user** chat.
 
     ### methods:
     * add_rag_base:
@@ -124,13 +124,19 @@ class ShortMem():
             if self.messages == []:
                 self.messages.append({"role": "developer", "content": self.rag_text[0]})
 
-class StoreImage():
-    def __init__(self, idelete:int=2):
-        self.idelete = idelete
-        self.image_storage = []
 
-    def storeimage(self, path:str=None, uri:bool=True, direct:bool=False,
-                   url:bool=False, decode_method:str="utf-8", ):
+class StoreImage():
+    '''
+    # Store Image
+    '''
+
+    def __init__(self, idelete:int=2):
+        self.attach = None
+        self.image_storage = []
+        self.idelete = idelete
+
+    def storeimage(self, path:str=None, uri:bool=False, direct:bool=False,
+                   url:bool=False, decode_method:str="utf-8"):
         '''
         ## Store Image
         **storeimage** use for store and remember Images.
@@ -160,32 +166,32 @@ class StoreImage():
                 self.image_storage.pop()
 
         try:
-            if uri == True:
-                with open(path, "r") as image_file:
+            if uri == True or uri != False:
+                with open(path, "rb") as image_file:
                     if decode_method:
-                        imagecode = base64.b64decode(image_file.read()).decode(decode_method)
-                    else:
-                        imagecode = base64.b64decode(image_file.read())
+                        imagecode = base64.b64encode(image_file.read()).decode(decode_method)
+                    
+                    elif decode_method == None:
+                        imagecode = base64.b64encode(image_file.read())
 
-                    self.image_storage.append("data:image/png;base64,{imagecode}")
+                    self.image_storage.append(f"data:image/png;base64,{imagecode}")
 
-            elif url == True:
+            elif url == True or url != False:
                 self.image_storage.append(path)
 
-            elif direct == True:
+            elif direct == True or direct != False:
                 self.image_storage.append(f"file://{path}")
 
-            else:
-                return None
+            elif direct == False or uri == False or url == False:
+                raise TypeError
         
-        except None:
-            raise ValueError("Use **direct**, **uri** or **url** to specify the Image store method.")
-        
+        except:
+            if TypeError:
+                raise ValueError("Use 'direct', 'uri' or 'url' to specify the Image store method.")
 
-
-    def attachimage(self, attach:str=None, 
-                    uri:bool=False, url:bool=False):
+    def attachimage(self, attach:str=None, direct:bool=False, 
+                    uri:bool=False, url:bool=False, decode_method:str="utf-8"):
         pass
 
-    def remindimage(self) -> None:
+    def remindimage(self, memory:bool=True, attached:bool=False) -> bool:
         pass
