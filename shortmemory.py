@@ -131,7 +131,7 @@ class StoreImage():
     '''
 
     def __init__(self, idelete:int=2):
-        self.attach = None
+        self.attached = None
         self.image_storage = []
         self.idelete = idelete
 
@@ -166,7 +166,7 @@ class StoreImage():
                 self.image_storage.pop()
 
         try:
-            if uri == True or uri != False:
+            if uri == True and uri != False:
                 with open(path, "rb") as image_file:
                     if decode_method:
                         imagecode = base64.b64encode(image_file.read()).decode(decode_method)
@@ -176,13 +176,13 @@ class StoreImage():
 
                     self.image_storage.append(f"data:image/png;base64,{imagecode}")
 
-            elif url == True or url != False:
+            elif url == True and url != False:
                 self.image_storage.append(path)
 
-            elif direct == True or direct != False:
+            elif direct == True and direct != False:
                 self.image_storage.append(f"file://{path}")
 
-            elif direct == False or uri == False or url == False:
+            elif direct == False and uri == False or url == False:
                 raise ValueError
         
         except:
@@ -191,9 +191,38 @@ class StoreImage():
 
     def attachimage(self, attach:str=None, direct:bool=False, 
                     uri:bool=False, url:bool=False, decode_method:str="utf-8"):
-        pass
+        '''
+        efef
+        '''
 
+        try:
+            if uri == True and uri != False:
+                with open(attach, "rb") as image_file:
+                    if decode_method:
+                        attached_image = base64.b64encode(image_file.read()).decode(decode_method)
+
+                    else:
+                        attached_image = base64.b64encode(image_file.read())
+
+                self.attached = attached_image
+
+            elif url == True and url != False:
+                self.attached = attached_image
+
+            elif direct == True and direct != False:
+                self.attached = f"file://{attach}"
+
+            elif direct == False and uri == False or url == False:
+                raise ValueError
+
+        except:
+            if ValueError:
+                raise ValueError("Use 'direct', 'uri' or 'url' to specify the Image store method.")
+        
     def remindimage(self, memory:bool=False | False, attached:bool=False) -> bool:
+        '''
+        efwee
+        '''
         try:
             if memory == True:
                 return self.image_storage
@@ -213,5 +242,3 @@ class StoreImage():
 
             if TypeError:
                 raise TypeError("Use boolian(True/False) for Argoment.")
-
-
