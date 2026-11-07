@@ -183,15 +183,35 @@ class StoreImage():
                 self.image_storage.append(f"file://{path}")
 
             elif direct == False or uri == False or url == False:
-                raise TypeError
+                raise ValueError
         
         except:
-            if TypeError:
+            if ValueError:
                 raise ValueError("Use 'direct', 'uri' or 'url' to specify the Image store method.")
 
     def attachimage(self, attach:str=None, direct:bool=False, 
                     uri:bool=False, url:bool=False, decode_method:str="utf-8"):
         pass
 
-    def remindimage(self, memory:bool=True, attached:bool=False) -> bool:
-        pass
+    def remindimage(self, memory:bool=False | False, attached:bool=False) -> bool:
+        try:
+            if memory == True:
+                return self.image_storage
+
+            if attached == True:
+                return self.attach
+
+            if memory == False and attached == False:
+                raise ValueError
+
+            if type(memory) == str or type(memory) == int or type(attached) == str or type(attached) == int:
+                raise TypeError
+
+        except:
+            if ValueError:
+                raise ValueError("You Should Make At least 1 parameter's 'True'.")
+
+            if TypeError:
+                raise TypeError("Use boolian(True/False) for Argoment.")
+
+
