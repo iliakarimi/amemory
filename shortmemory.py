@@ -65,7 +65,7 @@ class GoalsMem():
 
 class StoreMessage():
     '''
-    ## Store Message
+    ## StoreMessage
     This class is A **Short-term-Messages-Memory** for agents Store **Agent** and **user** chat.
 
     ### methods:
@@ -138,25 +138,25 @@ class StoreImage():
     def storeimage(self, path:str=None, uri:bool=False, direct:bool=False,
                    url:bool=False, decode_method:str="utf-8"):
         '''
-        ## Store Image
+        ## storeimage
         **storeimage** use for store and remember Images.
 
         usage:
         * **path**(str):</br>
-            This parameter's get image path or URL
+            This parameter's get image path or URL.
         \n
         #### store method:
         * **uri**(bool):</br>
-        If you want store base64 Encoded Image, make this parameter 'True'
+        If you want store base64 Encoded Image, make this parameter 'True'.
         \n
         * **direct**(bool):</br>
-        If you want store Image directly with path, make this parameter 'True'
+        If you want store Image directly with path, make this parameter 'True'.
         \n
         * **url**(bool):</br>
-        If you want store Image with **URL**, make this parameter 'True'
+        If you want store Image with **URL**, make this parameter 'True'.
         \n
         * **decode_method**(str):
-        If you want store Images with decode, you can add values like 'utf-8' to this parameter
+        If you want store Images with decode, you can add values like 'utf-8' to this parameter.
         \n
         for more information checkout **A-memory** docs.
         '''
@@ -192,7 +192,27 @@ class StoreImage():
     def attachimage(self, attach:str=None, direct:bool=False, 
                     uri:bool=False, url:bool=False, decode_method:str="utf-8"):
         '''
-        efef
+        ## attachimage
+        **attachimage** use for attach Images and use for like showing images to models.
+
+        usage:
+        * **attach**(str):</br>
+            This parameter's get and attach image or image URL.
+        \n
+        #### store method:
+        * **uri**(bool):</br>
+        If you want store base64 Encoded Image, make this parameter 'True'.
+        \n
+        * **direct**(bool):</br>
+        If you want store Image directly with path, make this parameter 'True'.
+        \n
+        * **url**(bool):</br>
+        If you want store Image with **URL**, make this parameter 'True'.
+        \n
+        * **decode_method**(str):
+        If you want store Images with decode, you can add values like 'utf-8' to this parameter.
+        \n
+        for more information checkout **A-memory** docs.
         '''
 
         try:
@@ -221,7 +241,8 @@ class StoreImage():
         
     def remindimage(self, memory:bool=False | False, attached:bool=False) -> bool:
         '''
-        efwee
+        ## remindimage
+
         '''
         try:
             if memory == True:
