@@ -81,10 +81,10 @@ class ShortMemory():
     * clear_messages:</br>
         This method clear entire messages excpet the system_text.
     \n
-    **storeimage**(self, path:str, uri:bool, direct:bool, url:bool, decode_method:str):</br>
+    **store_images**(self, path:str, uri:bool, direct:bool, url:bool, decode_method:str):</br>
         this method use for store images in chat.
     \n
-    **remindimage**(self):</br>
+    **remind_image**(self):</br>
         This method just return stored images.
     \n
     for more information checkout **A-memory** docs.
@@ -189,29 +189,29 @@ class ShortMemory():
                 raise ValueError("Use 'direct', 'uri' or 'url' to specify the Image store method.")
 
     # Return all stored Messages
-    def remind_messages(self):
-        return self.messages
-
-    def remindimage(self) -> bool:
+    def remind_messages(self) -> None:
         '''
-        ## remindimage
-        **remindimage** return stored Images.
-
-        # usage:
-        # * **memory**(bool):</br>
-        # If you want return stored memory(Not Attached Image), make this parameter 'True'
-        # \n
-        # * **attached**(bool):</br>
-        # If you want return attached image, make this parameter 'True'
+        ## remind_messages
+        **remind_messages** return stored messages.
         \n
         for more information checkout **A-memory** docs.
         '''
-        # try:
-            # if memory == True:
+
+        return self.messages
+
+    def remind_images(self) -> None:
+        '''
+        ## remind_image
+        **remind_image** return stored Images.
+        \n
+        for more information checkout **A-memory** docs.
+        '''
+
         return self.image_storage
 
     # Clear entir memory
     def clear_messages(self):
+            
             self.messages.clear()
 
             if self.messages == []:
