@@ -49,7 +49,7 @@ from openai import OpenAI
 
 client = Openai(apikey="OPENAI_API_KEY")
 
-sm.store_image(path="/path/image.png", uri=True)
+sm.store_images(path="/path/image.png", uri=True)
 sm.add_rag_base(text="You are a Artist assistant")
 
 sm.store_messages(role='user', message='what is this paint style?')
