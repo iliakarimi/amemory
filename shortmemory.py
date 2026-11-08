@@ -63,7 +63,7 @@ class GoalsMem():
             return resu
 
 
-class StoreMessage():
+class ShortMemory():
     '''
     ## StoreMessage
     **StoreMessage** is A **Short-term-Messages-Memory** class for Store **Models** and **user** Messages chat.
