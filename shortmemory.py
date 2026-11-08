@@ -106,6 +106,19 @@ class StoreMessage():
 
     # Storing messages with 8 limit and forget first and old message after add new message
     def store_messages(self, role:str | None, message:str | None) -> str:
+        '''
+        ## store_messages
+        **store_messages** use for store and remember text messages.
+
+        usage:
+        * **role**(str):</br>
+            This parameter's get message role like "developer", "assistant" and "user".
+        \n
+        * **message**(bool):</br>
+            This parametes's get message text.
+        \n
+        for more information checkout **A-memory** docs.
+        '''
 
         # Add new messages
         if self.message_number != 10:
