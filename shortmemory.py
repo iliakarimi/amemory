@@ -94,6 +94,7 @@ class ShortMemory():
         self.images = None
         self.messages = []
         self.rag_text = []
+        self.image_storage = []
         self.systemtxt = None
         self.message_number = 0
         self.message_limit = message_limit
@@ -141,6 +142,9 @@ class ShortMemory():
         **storeimage** use for store and remember Images.
 
         usage:
+        * **role**(str):</br>
+            set message role with this parameter like "developer", "assistant" and "user".
+        \n
         * **path**(str):</br>
             This parameter's get image path or URL.
         \n
@@ -161,8 +165,9 @@ class ShortMemory():
         '''
 
         try:
-            if self.message_number <= self.message_limit:    # try to figure out which function do I put this
-                
+            if self.message_number <= self.message_limit:
+
+                # Check for storage method and Store new image.
                 if uri == True and uri != False:
                     with open(path, "rb") as image_file:
                         if decode_method:
@@ -172,23 +177,29 @@ class ShortMemory():
                             imagecode = base64.b64encode(image_file.read())
 
                         self.images = f"data:image/png;base64,{imagecode}"
+                        self.messages.append(f"data:image/png;base64,{imagecode}")
                         self.image_storage.append({"role": role, "content": f"data:image/png;base64,{imagecode}"})
 
                 elif url == True and url != False:
                     self.images = path
+                    self.messages.append(path)
                     self.image_storage.append({"role": role, "content": path})
 
                 elif direct == True and direct != False:
                     self.images = f"file://{path}"
+                    self.messages.append({"role": role, "content": f"file://{path}"})
                     self.image_storage.append({"role": role, "content": f"file://{path}"})
 
+                # Raise Error when all of mthods False
                 elif direct == False and uri == False or url == False:
                     raise ValueError("Use 'direct', 'uri' or 'url' to specify the Image store method.")
 
+            # Remove old message after 8 message
             else:
                 for ir in range(self.image_delete):
                     self.image_storage.pop(self.alwayskeep)
-
+                    self.messages.pop(self.alwayskeep)
+                
                 self.message_number = 0
                 self.messages.append({"role": role, "content": self.images})
         
@@ -199,13 +210,14 @@ class ShortMemory():
     def remind_messages(self) -> None:
         '''
         ## remind_messages
-        **remind_messages** return stored messages.
+        **remind_messages** return all stored messages.
         \n
         for more information checkout **A-memory** docs.
         '''
 
         return self.messages
 
+    # Return all stored Images
     def remind_images(self) -> None:
         '''
         ## remind_image
