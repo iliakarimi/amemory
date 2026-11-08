@@ -56,6 +56,7 @@ while True:
     sm.store_messages(role="assistant", message=response.output_text)
     print(f"Assistant: {response.output_text}")
 ```
+<br />
 
 
 ## add_rag_base(self, text:str = None):
@@ -95,6 +96,37 @@ User: What's your name?
 Assistant: I'm Terry, Your Helpful assistant.
 ```
 <br />
+
+
+## store_image(self, role:str=None, path:str=None, uri:bool=False, direct:bool=False, url:bool=False, decode_method:str="utf-8"):
+```python
+from openai import OpenAI
+from amemory.shortmemory import ShortMem
+
+
+sm = ShortMem(m_delete=2, always_keep=1)
+client = OpenAI(api_key="...")
+
+system_text = "You are Terry, A helpful assistant."
+sm.add_rag_base(text=system_text)
+
+
+TEXT = "Explain this image."
+
+sm.store_images(role="user", path="/path/image.png", uri=True, decode_method:str="utf-8")
+sm.store_messages(role="user", messages=user_input)
+
+response = client.responses.create(
+    model="gpt-6-astra",
+    input=sm.remind_messages()
+)
+
+sm.store_messages(role="assistant", message=response.output_text)
+print(f"Assistant: {response.output_text}")
+```
+```terminal
+Assistant: This Image show's a Trash in AI Face🥀
+```
 <br />
 
 
@@ -136,4 +168,4 @@ while True:
     
 ```
 
-That's it.
+That's it for now.
