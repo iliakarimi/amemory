@@ -90,7 +90,7 @@ class ShortMemory():
     for more information checkout **A-memory** docs.
     '''
 
-    def __init__(self, message_delete:int=3, alwayskeep:int=0, message_limit:int=100):
+    def __init__(self, message_delete:int=3, alwayskeep:int=0, message_limit:int=10):
         self.images = None
         self.messages = []
         self.rag_text = []

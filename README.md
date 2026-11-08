@@ -8,6 +8,7 @@ This is A memory for AI Agent/Assistant
 ## Key Features in A-Memory
 
 * **Short Term Memory:** A Simple Short-Term-Memory for active chat with 8 message limit,
+* **Images Support:** You can Store Images in Short-Term-Memory.
 * **Job map:** A map for Agent to plan it's job,
 * **Chat Goals:** This feature use to set goals and fact in active chat even short-term-memory removed old messages.
 
@@ -38,7 +39,7 @@ To import and use, run:
 from amemory.shortmemory import ShortMem, GoalsMem
 from amemory.jobmap import jobmap
 
-sm = ShortMem()
+sm = ShortMem(message_delete=3, alwayskeep=0, message_limit=10)
 gm = GoalsMem()
 ```
 with openai library:
