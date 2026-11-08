@@ -39,7 +39,7 @@ To import and use, run:
 from amemory.shortmemory import ShortMem, GoalsMem
 from amemory.jobmap import jobmap
 
-sm = ShortMem(message_delete=3, alwayskeep=0, message_limit=10)
+sm = ShortMem(message_delete=3, alwayskeep=1, message_limit=10)
 gm = GoalsMem()
 ```
 with openai library:
@@ -49,7 +49,10 @@ from openai import OpenAI
 
 client = Openai(apikey="OPENAI_API_KEY")
 
-sm.store_messages(role='user', message='whats 2+2')
+sm.store_image(path="/path/image.png", uri=True)
+sm.add_rag_base(text="You are a Artist assistant")
+
+sm.store_messages(role='user', message='what is this paint style?')
 
 response = client.responses.create(
     model="gpt-5.6",
