@@ -391,3 +391,4 @@ class ShortMemory():
 
 #             if TypeError:
 #                 raise TypeError("Use boolian(True/False) for Argoment.")
+
