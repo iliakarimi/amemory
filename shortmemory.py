@@ -199,7 +199,7 @@ class ShortMemory():
 
             # Remove old message after 8 message
             else:
-                for ir in range(self.image_delete):
+                for ir in range(self.rm_messages_num):
                     self.image_storage.pop(self.alwayskeep)
                     self.messages.pop(self.alwayskeep)
                 
