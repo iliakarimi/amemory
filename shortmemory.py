@@ -238,3 +238,4 @@ class ShortMemory():
 
             if self.messages == []:
                 self.messages.append({"role": "developer", "content": self.rag_text[0]})
+
