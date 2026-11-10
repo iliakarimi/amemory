@@ -34,11 +34,11 @@ class GoalsMem():
 
         if contextgoals:
             self.context_goals.append(f"number{self.cn}: "+contextgoals)
-            self.cn+=1
+            self.cn += 1
 
         if chatfacts:
             self.chat_facts.append(f"number{self.fn}: "+chatfacts)
-            self.fn=+1
+            self.fn += 1
 
     # The resault methed return data stored in lists
     def resault(self, cg:bool | False, ag:bool | False, 
