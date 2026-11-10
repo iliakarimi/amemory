@@ -179,16 +179,19 @@ class ShortMemory():
                         self.images = f"data:image/png;base64,{imagecode}"
                         self.messages.append(f"data:image/png;base64,{imagecode}")
                         self.image_storage.append({"role": role, "content": f"data:image/png;base64,{imagecode}"})
+                        self.message_number += 1
 
                 elif url == True and url != False:
                     self.images = path
                     self.messages.append(path)
                     self.image_storage.append({"role": role, "content": path})
+                    self.message_number += 1
 
                 elif direct == True and direct != False:
                     self.images = f"file://{path}"
                     self.messages.append({"role": role, "content": f"file://{path}"})
                     self.image_storage.append({"role": role, "content": f"file://{path}"})
+                    self.message_number += 1
 
                 # Raise Error when all of mthods False
                 elif direct == False and uri == False or url == False:
