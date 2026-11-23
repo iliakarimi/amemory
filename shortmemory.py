@@ -96,7 +96,6 @@ class ShortMemory():
         self.rag_text = []
         self.image_storage = []
         self.systemtxt = None
-        self.message_number = 0
         self.message_limit = message_limit
         self.rm_messages_num = message_delete
         self.alwayskeep = alwayskeep
@@ -107,7 +106,7 @@ class ShortMemory():
         self.messages.append({"role": "developer", "content": self.rag_text[0]})
 
 
-    # Storing messages with 8 limit and forget first and old message after add new message
+
     def store_messages(self, role:str | None, message:str | None) -> str:
         '''
         ## store_messages
@@ -124,9 +123,9 @@ class ShortMemory():
         '''
 
         # Add new messages
-        if self.message_number != self.message_limit:
+        if len(self.messages) < self.message_limit:
             self.messages.append({"role": role, "content": message})
-            self.message_number+=1
+
         # Remove old message after 8 message
         else:
             for r in range(self.rm_messages_num):
@@ -165,7 +164,7 @@ class ShortMemory():
         '''
 
         try:
-            if self.message_number <= self.message_limit:
+            if len(self.messages) < self.message_limit:
 
                 # Check for storage method and Store new image.
                 if uri == True and uri != False:
@@ -177,7 +176,7 @@ class ShortMemory():
                             imagecode = base64.b64encode(image_file.read())
 
                         self.images = f"data:image/png;base64,{imagecode}"
-                        self.messages.append(f"data:image/png;base64,{imagecode}")
+                        self.messages.append({"role": role, "content": f"data:image/png;base64,{imagecode}"})
                         self.image_storage.append({"role": role, "content": f"data:image/png;base64,{imagecode}"})
                         self.message_number += 1
 
@@ -239,3 +238,14 @@ class ShortMemory():
             if self.messages == []:
                 self.messages.append({"role": "developer", "content": self.rag_text[0]})
 
+
+
+
+stm = ShortMemory(message_delete=1, message_limit=5)
+n = 1
+for i in range(15):
+    stm.store_messages(role=f"role {n}", message=f"message {n}")
+    n+=1
+    print(f"--> {stm.remind_messages()}\n")
+
+# print(f"total messages: {stm.remind_messages()}")
