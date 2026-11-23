@@ -219,7 +219,7 @@ class ShortMemory():
 
         return self.messages
 
-    # Return all stored Imagef"file://{path}"s
+    # Return all stored Images
     def remind_images(self) -> None:
         '''
         ## remind_image
