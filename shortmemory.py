@@ -135,7 +135,7 @@ class ShortMemory():
             self.messages.append({"role": role, "content": message})
 
     def store_images(self, role:str=None, path:str=None, uri:bool=False, direct:bool=False,
-                   url:bool=False, decode_method:str="utf-8"):
+                   url:bool=False, decode_method:str="utf-8", *args):
         '''
         ## store_images
         **storeimage** use for store and remember Images.
@@ -176,8 +176,9 @@ class ShortMemory():
                             imagecode = base64.b64encode(image_file.read())
 
                         self.images = f"data:image/png;base64,{imagecode}"
-                        self.messages.append({"role": role, "content": f"data:image/png;base64,{imagecode}"})
-                        self.image_storage.append({"role": role, "content": f"data:image/png;base64,{imagecode}"})
+                        # add args for like "data:image/png;base64,"
+                        self.messages.append({"role": role, "content": f"{args}data:image/png;base64,{imagecode}"})
+                        self.image_storage.append({"role": role, "content": f"{args}data:image/png;base64,{imagecode}"})
                         self.message_number += 1
 
                 elif url == True and url != False:
@@ -196,7 +197,6 @@ class ShortMemory():
                 elif direct == False and uri == False or url == False:
                     raise ValueError("Use 'direct', 'uri' or 'url' to specify the Image store method.")
 
-            # Remove old message after 8 message
             else:
                 for ir in range(self.rm_messages_num):
                     self.image_storage.pop(self.alwayskeep)
@@ -219,7 +219,7 @@ class ShortMemory():
 
         return self.messages
 
-    # Return all stored Images
+    # Return all stored Imagef"file://{path}"s
     def remind_images(self) -> None:
         '''
         ## remind_image
