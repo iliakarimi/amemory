@@ -100,12 +100,9 @@ class ShortMemory():
         self.rm_messages_num = message_delete
         self.alwayskeep = alwayskeep
 
-
     def add_rag_base(self, text:str = None):
         self.rag_text.append(text)
         self.messages.append({"role": "developer", "content": self.rag_text[0]})
-
-
 
     def store_messages(self, role:str | None, message:str | None) -> str:
         '''
