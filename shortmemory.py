@@ -91,7 +91,7 @@ class ShortMemory():
     '''
 
     def __init__(self, message_delete:int=3, alwayskeep:int=0, message_limit:int=10):
-        self.images = None
+        self.current_image = None
         self.messages = []
         self.rag_text = []
         self.image_storage = []
@@ -175,20 +175,20 @@ class ShortMemory():
                         elif decode_method == None:
                             imagecode = base64.b64encode(image_file.read())
 
-                        self.images = f"data:image/png;base64,{imagecode}"
+                        self.current_image = f"data:image/png;base64,{imagecode}"
                         # add args for like "data:image/png;base64,"
                         self.messages.append({"role": role, "content": f"{args}data:image/png;base64,{imagecode}"})
                         self.image_storage.append({"role": role, "content": f"{args}data:image/png;base64,{imagecode}"})
                         self.message_number += 1
 
                 elif url == True and url != False:
-                    self.images = path
+                    self.current_image = path
                     self.messages.append(path)
                     self.image_storage.append({"role": role, "content": path})
                     self.message_number += 1
 
                 elif direct == True and direct != False:
-                    self.images = f"file://{path}"
+                    self.current_image = f"file://{path}"
                     self.messages.append({"role": role, "content": f"file://{path}"})
                     self.image_storage.append({"role": role, "content": f"file://{path}"})
                     self.message_number += 1
@@ -203,7 +203,7 @@ class ShortMemory():
                     self.messages.pop(self.alwayskeep)
                 
                 self.message_number = 0
-                self.messages.append({"role": role, "content": self.images})
+                self.messages.append({"role": role, "content": self.current_image})
         
         except Exception as e:
             print(e.with_traceback)
