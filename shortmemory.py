@@ -234,15 +234,3 @@ class ShortMemory():
 
             if self.messages == []:
                 self.messages.append({"role": "developer", "content": self.rag_text[0]})
-
-
-
-
-stm = ShortMemory(message_delete=1, message_limit=5)
-n = 1
-for i in range(15):
-    stm.store_messages(role=f"role {n}", message=f"message {n}")
-    n+=1
-    print(f"--> {stm.remind_messages()}\n")
-
-# print(f"total messages: {stm.remind_messages()}")
