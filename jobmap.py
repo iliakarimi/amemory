@@ -21,7 +21,6 @@ class JobMap():
 
         WORDS = ''
         SYMBOL = '>'
-        num = 1
         raw_data = data+SYMBOL
 
         for j in raw_data:
@@ -31,7 +30,6 @@ class JobMap():
 
             elif SYMBOL in j:
                 self.job.append(WORDS)
-                num+=1
                 WORDS=''
 
             else:
@@ -43,8 +41,8 @@ class JobMap():
 
             return self.job.pop()
 
-        except Exception as e:
-            return f"An Unexpected error: {e}"
-
         except IndexError:
             return "JOB ENDED"
+
+        except Exception as e:
+            return f"An Unexpected error: {e}"
