@@ -15,22 +15,23 @@ class JobMap():
     '''
 
     def __init__(self):
+        self.WORDS = ''
+        self.SYMBOL = '>'
         self.job = []
 
     def addjob(self, data:str=None) -> str:
 
-        WORDS = ''
-        SYMBOL = '>'
-        raw_data = data+SYMBOL
+
+        raw_data = data+self.SYMBOL
 
         for j in raw_data:
         
-            if SYMBOL not in j:
-                WORDS+=j
+            if self.SYMBOL not in j:
+                self.WORDS+=j
 
-            elif SYMBOL in j:
-                self.job.append(WORDS)
-                WORDS=''
+            elif self.SYMBOL in j:
+                self.job.append(self.WORDS)
+                self.WORDS=''
 
             else:
                 raise ValueError("Wrong Type of symbol. Use '>' symbol.")
