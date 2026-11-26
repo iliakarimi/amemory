@@ -59,8 +59,20 @@ class GoalsMem():
 
         if al == True:
             return f"Active Goal: {self.active_goal}\nRecent Goal: {self.recent_goal}\nContaxt Goals: {self.context_goals}\nChat Facts: {self.chat_facts}"
-        if resu!=None:
+        if resu != None:
             return resu
+
+    def reset_goals(self):
+        self.context_goals.clear()
+        self.recent_goal = None
+        self.active_goal = None
+        self.chat_facts.clear()
+
+        if self.cn > 0:
+            self.cn = 0
+
+        if self.fn > 0:
+            self.fn = 0
 
 
 class ShortMemory():
