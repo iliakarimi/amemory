@@ -24,7 +24,7 @@ class GoalsMem():
 
     # This method set and store goals in list 
     def set_goals(self, contextgoals=None, recentgoal=None, 
-            activegoal=None, chatfacts=None) -> str:
+                  activegoal=None, chatfacts=None) -> str:
 
         if activegoal:
             self.active_goal = activegoal
@@ -42,7 +42,7 @@ class GoalsMem():
 
     # The resault methed return data stored in lists
     def resault(self, cg:bool | False, ag:bool | False, 
-            rg:bool | False, cf:bool | False, al:bool | False):
+                rg:bool | False, cf:bool | False, al:bool | False):
         resu = []
 
         if cg == True:
@@ -62,17 +62,25 @@ class GoalsMem():
         if resu != None:
             return resu
 
-    def reset_goals(self):
-        self.context_goals.clear()
-        self.recent_goal = None
-        self.active_goal = None
-        self.chat_facts.clear()
+    def reset_goals(self, context_goals:bool=False, chat_facts:bool=False, 
+                    recent_goal:bool=False, active_goal:bool=False):
+        if context_goals:
+            self.context_goals.clear()
+            
+            if self.cn > 0:
+                self.cn = 0
 
-        if self.cn > 0:
-            self.cn = 0
+        if chat_facts:
+            self.chat_facts.clear()
 
-        if self.fn > 0:
-            self.fn = 0
+            if self.fn > 0:
+                self.fn = 0
+
+        if recent_goal:
+            self.recent_goal = None
+
+        if active_goal:
+            self.active_goal = None
 
 
 class ShortMemory():
@@ -246,15 +254,3 @@ class ShortMemory():
 
             if self.messages == []:
                 self.messages.append({"role": "developer", "content": self.rag_text[0]})
-
-
-
-
-stm = ShortMemory(message_delete=1, message_limit=5)
-n = 1
-for i in range(15):
-    stm.store_messages(role=f"role {n}", message=f"message {n}")
-    n+=1
-    print(f"--> {stm.remind_messages()}\n")
-
-# print(f"total messages: {stm.remind_messages()}")
