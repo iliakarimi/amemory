@@ -64,6 +64,7 @@ class GoalsMem():
 
     def reset_goals(self, context_goals:bool=False, chat_facts:bool=False, 
                     recent_goal:bool=False, active_goal:bool=False):
+        
         if context_goals:
             self.context_goals.clear()
             
